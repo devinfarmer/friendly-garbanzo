@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :places
-  
 
+  get 'mine' => 'places#mine'
 
   devise_for :users 
 

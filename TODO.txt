@@ -1,0 +1,11 @@
+TODO
+
+Make it so that users can only edit, update, and destroy places that belong to them.
+
+Figure out a way to assign more users to a place. Maybe ask the creating user for permission.
+
+Make a Library System model that includes other info
+
+Style the application.html.erb so that Log-In & Sign out are in a column and only appear if applicable.
+
+Style Places index so it's more of a collection instead of a table, eg. little rectangles instead of rows. Maybe filter by category or something.

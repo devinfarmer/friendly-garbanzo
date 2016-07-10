@@ -8,6 +8,11 @@ class PlacesController < ApplicationController
     @places = Place.all
   end
 
+  def mine
+    @places = current_user.places
+    render :index
+  end
+
   # GET /places/1
   # GET /places/1.json
   def show
@@ -26,6 +31,7 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
+    @place.users << current_user
 
     respond_to do |format|
       if @place.save
