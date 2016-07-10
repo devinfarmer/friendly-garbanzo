@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "FakeSrp" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Manage Library Info Prototype" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -37,6 +37,27 @@
     <![endif]-->
   </head>
   <body>
+
+    <%= nav_bar :fixed => :top, :brand => "Manage Library Info Prototype", :responsive => true do %>
+    <%= menu_group do %>
+        <%= menu_item "All Places", places_path %>
+        <%= menu_divider %>
+        <%= drop_down "Places" do %>
+            <%= menu_item "Sign in", "/users/sign_in" %>
+            <%= menu_item "All Places", places_path %>
+        <% end %>  
+    <% end %>
+
+    <%= menu_group :pull => :right do %>
+        <% if current_user %>
+          <%= menu_item "My Places", "/mine" %>
+          <%= menu_item "Sign Out", "/sign_out" %>
+        <% else %>
+            <%= menu_item "Sign In", "/users/sign_in" %>
+            <% end -%>
+        <% end %>
+    <% end %>
+
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">

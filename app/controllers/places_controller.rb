@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   # GET /places
   # GET /places.json
@@ -10,7 +10,6 @@ class PlacesController < ApplicationController
 
   def mine
     @places = current_user.places
-    render :index
   end
 
   # GET /places/1
@@ -21,10 +20,20 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+    @place.users << current_user
   end
 
   # GET /places/1/edit
   def edit
+    if @place.users.include? current_user
+      flash[:notice] = "This is your place"
+    else
+      flash[:notice] = "This is NOT your place"
+      redirect_to :mine
+
+
+    end
+
   end
 
   # POST /places
